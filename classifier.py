@@ -1,30 +1,31 @@
-from taipy.gui import Gui #import the GUI from taipy.gui
-
+from taipy.gui import Gui
 
 content = ""
 img_path = "placeholder_image.png"
-#HTML tags for Webpage implementation (Frontend)
-#Notes for html:
-    #using """ to multiline tasking in python frontend
-    #using <|{}|> to image selection / task selection and styling
-
 
 index = """
 <|text-center|
-<|{logo.png}|image|>
+<|{"logo.png"}|image|width=20vw|>
 
-<|{content}|file_selector|background-color-blue|>
+<|{content}|file_selector|extensions=.png|>
 Válassza ki a feltölteni kívánt filet!
 
+<|{img_path}|image|>
 
-<|{img_path|image>
->
+<|label goes here|indicator|value=0|min=0|max=100|width=15vw|>
 """
 
+def on_change(state, var_name, var_val):
+    if var_name == "content":
+        state.img_path = var_val    #image update
 
-app = Gui(page=index) #using "app" named variable to have a Gui instance
+app = Gui(page=index)
 
+stylekit = {
+  "color_background_dark": "#1F2F44",
+  "color_primary": "#57f707",
+  "color_secondary": "#57f707",
+}
 if __name__ == "__main__":
-    app.run(use_reloader=True) #live app on port 127.0.0.1:5000 port -->using this line to avoid rerun after changes
-
-
+    # Override the background color to orange
+    app.run(use_reloader=True, dark_mode=True, stylekit=stylekit, title="MI_HW")
