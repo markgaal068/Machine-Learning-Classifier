@@ -122,18 +122,18 @@ class_names = {
 
 model = models.load_model("baseline_mariya.keras")
 
-def predict_image(model, path_to_img):
-    img = Image.open(path_to_img)
-    img = img.convert("RGB")
-    img = img.resize((32, 32))
+def image_pred(model, path_to_img):
+    image = Image.open(path_to_img)
+    image = image.convert("RGB")
+    image = image.resize((32, 32))
     data = np.asarray(img)
     data = data / 255
-    probs = model.predict(np.array([data])[:1])
+    tries = model.predict(np.array([data])[:1])
 
-    top_prob = probs.max()
-    top_pred = class_names[np.argmax(probs)]
+    best_tries = tries.max()
+    best_preds = class_names[np.argmax(tries)]
     
-    return top_prob, top_pred
+    return best_tries, best_preds
     
 content = ""
 img_path = "placeholder_image.png"
@@ -157,11 +157,10 @@ Válassz ki egy képet a könyvtáradból!
 
 def on_change(state, var_name, var_val):
     if var_name == "content":
-        top_prob, top_pred = predict_image(model, var_val)
-        state.prob = round(top_prob * 100)
-        state.pred = "A képen egy " + top_pred + " látható!"
+        best_tries, best_preds = image_pred(model, var_val)
+        state.prob = round(best_tries * 100)
+        state.pred = "A képen egy " + best_pred + " látható!"
         state.img_path = var_val
-    #print(var_name, var_val)
 
 
 app = Gui(page=index)
