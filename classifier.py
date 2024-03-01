@@ -122,14 +122,11 @@ class_names = {
 
 model = models.load_model("base.keras")
 
-
-model = models.load_model("base.keras")
-
 def image_pred(model, path_to_img):
     image = Image.open(path_to_img)
     image = image.convert("RGB")
     image = image.resize((32, 32))
-    data = np.asarray(img)
+    data = np.asarray(image)
     data = data / 255
     tries = model.predict(np.array([data])[:1])
 
