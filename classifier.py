@@ -159,7 +159,7 @@ def on_change(state, var_name, var_val):
     if var_name == "content":
         best_tries, best_preds = image_pred(model, var_val)
         state.prob = round(best_tries * 100)
-        state.pred = "A képen egy " + best_pred + " látható!"
+        state.pred = "A képen egy " + best_preds + " látható!"
         state.img_path = var_val
 
 
