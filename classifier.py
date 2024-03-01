@@ -120,7 +120,7 @@ class_names = {
 #     99: 'worm'
 # }
 
-model = models.load_model("baseline_mariya.keras")
+model = models.load_model("base.keras")
 
 def image_pred(model, path_to_img):
     image = Image.open(path_to_img)
