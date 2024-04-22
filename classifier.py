@@ -33,7 +33,7 @@ def image_pred(model, path_to_img):
     return best_tries, best_preds
     
 content = ""
-img_path = "placeholder_image.png"
+img_path = "placeh.jpg"
 prob = 0
 pred = ""
 
@@ -68,4 +68,4 @@ stylekit = {
   "color_secondary": "#57f707",
 }
 if __name__ == "__main__":
-    app.run(use_reloader=True, stylekit=stylekit, title="MI_HW")
+    app.run(use_reloader=True, stylekit=stylekit, title="K1O2S7 - Classifier")
